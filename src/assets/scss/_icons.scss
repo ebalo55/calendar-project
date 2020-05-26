@@ -1,0 +1,21 @@
+@mixin icon($name, $prefix: "") {
+	@if($prefix == fab) {
+		@extend .fab;
+	}
+	@else {
+		@extend .fas;
+	}
+	
+	&:before {
+		content: fa-content($name);
+	}
+}
+
+%arrow-left { @include icon($fa-var-chevron-left); }
+%arrow-right { @include icon($fa-var-chevron-right); }
+%add { @include icon($fa-var-plus); }
+%close { @include icon($fa-var-times); }
+
+.script { @include icon($fa-var-scroll); }
+.location { @include icon($fa-var-map-marker-alt); }
+.clock { @include icon($fa-var-clock); }

@@ -1,0 +1,144 @@
+.modal-wrapper {
+	z-index: 1;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	
+	&:before {
+		position: absolute;
+		content: "";
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(#111, .75);
+	}
+	
+	.modal {
+		margin: 10rem auto auto auto;
+		background-color: #f1f1f1;
+		width: 60%;
+		z-index: 1;
+		border-radius: .25rem;
+		padding: 1rem;
+		
+		header {
+			display: flex;
+			border-bottom: 3px solid $border-color;
+			
+			span {
+				font-size: 1.5em;
+				font-weight: 600;
+				padding: .5rem .5rem .5rem 0;
+				
+				&:first-letter {
+					text-transform: capitalize;
+				}
+			}
+			
+			.close {
+				@extend %close;
+				margin-left: auto;
+				cursor: pointer;
+				height: 2rem;
+				width: 2rem;
+				text-align: right;
+			}
+		}
+		
+		section {
+			margin-top: 1rem;
+			padding: .5rem;
+			max-height: 65vh;
+			overflow: auto;
+			
+			.cols {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				
+				.left-col, .right-col, .std-col {
+					display: flex;
+					flex-direction: column;
+					padding: .5rem;
+				}
+				
+				.left-col {
+					border-right: 2px solid $border-color;
+				}
+				
+				&.unequal-division {
+					grid-template-columns: .5fr 1fr;
+				}
+			}
+			
+			@import "event_list";
+			
+			label {
+				font-size: .85em;
+				font-weight: bold;
+				color: #333;
+				margin-bottom: .25rem;
+				cursor: pointer;
+				font-family: "Nunito", sans-serif;
+				margin-top: 1rem;
+				
+				span {
+					margin-right: .5rem;
+				}
+				
+				&:first-child {
+					margin-top: 0;
+				}
+			}
+			
+			input, textarea {
+				appearance: none;
+				outline: none;
+				border: 1px solid $border-color;
+				padding: .5rem;
+				border-radius: .25rem;
+				font-size: 1.1em;
+			}
+			
+			.buttons-container {
+				@extend %flex-end;
+				padding-left: .5rem;
+				
+				button {
+					margin: .5rem .5rem 0;
+					padding: .5rem;
+					
+					appearance: none;
+					background: transparent;
+					outline: none;
+					
+					border: 1px solid $border-color;
+					border-radius: .15rem;
+					transition: all .5s;
+					cursor: pointer;
+					
+					&.cancel {
+						border: 1px solid lighten(red, 25%);
+						color: darken(red, 15%);
+						
+						&:hover {
+							background-color: lighten(red, 15%);
+							color: white;
+						}
+					}
+					
+					&.confirm {
+						border: 1px solid lighten(green, 10%);
+						color: darken(green, 1.5%);
+						
+						&:hover {
+							background-color: lighten(green, 10%);
+							color: white;
+						}
+					}
+				}
+			}
+		}
+	}
+}

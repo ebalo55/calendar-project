@@ -1,0 +1,81 @@
+.month-card-wrapper {
+	display: grid;
+	grid-template-rows: repeat(5, 1fr);
+	grid-template-columns: repeat(7, 1fr);
+	height: 100%;
+	padding: 3rem;
+	
+	.day {
+		padding: .5rem;
+		border: 1px solid $border-color;
+		position: relative;
+		user-select: none;
+		
+		&:before {
+			@extend %flex-center;
+			
+			content: attr(data-day-index);
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			font-size: 5em;
+			color: rgba(#1f1f1f, .1);
+			z-index: -1;
+		}
+		
+		h3 {
+			display: flex;
+			align-items: center;
+			
+			.add-event {
+				@extend %add;
+				@extend %flex-center;
+				
+				border-radius: .25rem;
+				border: 1px solid $secondary;
+				margin-left: auto;
+				padding: .25rem;
+				font-size: .75em;
+				color: $darker-secondary;
+				transition: all .5s;
+				cursor: pointer;
+				
+				&:hover {
+					background-color: $darker-secondary;
+					border-color: $darker-secondary;
+					color: #e6e6e6;
+				}
+			}
+		}
+		
+		section {
+			display: flex;
+			overflow: auto;
+			flex-direction: column;
+			margin-top: .25rem;
+			padding: 0 .5rem;
+			width: 14rem;
+			height: 15.5rem;
+			
+			li {
+				border-radius: .25rem;
+				border: 1px solid $secondary;
+				margin: .5rem auto;
+				padding: .5rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				cursor: pointer;
+				
+				&.more {
+					border: none;
+					padding: 0 .5rem;
+					color: $darker-secondary;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
