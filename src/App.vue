@@ -65,18 +65,7 @@ export default {
             currentWorkingDay: null,
             monthName: "",
             year: "",
-            allTimeEvents: {
-                "5-May-2020": {
-                    events: [
-                        { time: "14:48", title: "Small event", description: "This is a really small event, nothing exciting. Few people will come.", location: "My home", open: false },
-                        { time: "14:50", title: "Medium event", description: `This event is quite important but not the best one.`, location: "Your home", open: false },
-                        { time: "14:52", title: "Large event ", description: "Oh this starts sound pretty!", location: "The college", open: false },
-                        { time: "14:54", title: "X-Large event", description: "This is pretty large isn't it?", location: "The mall", open: false },
-                        { time: "14:56", title: "XX-Large event", description: "Oh, damn i can't even see my hands here!", location: "The disco", open: false },
-                        { time: "14:58", title: "XXX-Large event", description: "This is really awesome and... HUGE", location: "The stadium", open: false },
-                    ]
-                }
-            },
+            allTimeEvents: {},
             addEventModal: {
                 title: "Add event",
                 isOpen: false,
@@ -168,6 +157,7 @@ export default {
 			 */
             setTimeout(() => {
                 _this.allTimeEvents = tmp;
+                localStorage.setItem("allTimeEvents", JSON.stringify(tmp));
                 _this.resetCollapsableState();
             }, 100);
             
@@ -199,6 +189,13 @@ export default {
         }
     },
     created() {
+        if(!localStorage.getItem("allTimeEvents")) {
+            localStorage.setItem("allTimeEvents", JSON.stringify({}));
+        }
+        else {
+            this.allTimeEvents = JSON.parse(localStorage.getItem("allTimeEvents"));
+        }
+        
         this.days = moment().daysInMonth();
     }
 }
