@@ -74,7 +74,7 @@
 				
 				let _this = this;
 				this.timerId = setTimeout(() => {
-					_this.$emit("year-change", _this.year);
+					_this.$emit("date-change", this.currentMonthName, this.year);
 					_this.timerId = null;
 				}, 1e3);
 			}
